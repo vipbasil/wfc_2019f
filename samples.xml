@@ -1,3 +1,4 @@
 <samples>
-	<overlapping name="Red Maze" N="2" periodic="True" width="8" height="6"/>
+	<simpletiled name="Summer" width="15" height="15"/>
+	<simpletiled name="Castle" width="20" height="20"/>
 </samples>

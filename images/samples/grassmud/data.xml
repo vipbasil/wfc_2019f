@@ -1,0 +1,93 @@
+<set size="4">
+  <tiles>
+    <tile name="grass_middle" symmetry="X" weight="1.0"/>
+    <tile name="mud_middle"   symmetry="X" weight="1.0"/>
+    <!-- straight border: allow 90° rotations so we get vertical + horizontal edges -->
+    <tile name="grass_mud"    symmetry="T" weight="1.0"/>
+    <tile name="corner_mud"   symmetry="L" weight="1.0"/>
+  </tiles>
+
+  <neighbors>
+    <!-- same-material continuity -->
+    <neighbor left="grass_middle" right="grass_middle"/>
+    <neighbor left="mud_middle"   right="mud_middle"/>
+    <neighbor top="grass_middle"  bottom="grass_middle"/>
+    <neighbor top="mud_middle"    bottom="mud_middle"/>
+
+    <!-- =============== HORIZONTAL (left/right) =============== -->
+    <!-- orientation 0: grass | mud -->
+    <neighbor left="grass_middle" right="grass_mud"/>
+    <neighbor left="grass_mud"    right="grass_middle"/>   <!-- reverse -->
+    <neighbor left="grass_mud"    right="mud_middle"/>
+    <neighbor left="mud_middle"   right="grass_mud"/>      <!-- reverse -->
+
+    <!-- orientation 2: mud | grass -->
+    <neighbor left="mud_middle"   right="grass_mud 2"/>
+    <neighbor left="grass_mud 2"  right="mud_middle"/>     <!-- reverse -->
+    <neighbor left="grass_mud 2"  right="grass_middle"/>
+    <neighbor left="grass_middle" right="grass_mud 2"/>    <!-- reverse -->
+
+    <!-- ================ VERTICAL (top/bottom) ================= -->
+    <!-- orientation 1: grass over mud -->
+    <neighbor top="grass_middle"  bottom="grass_mud 1"/>
+    <neighbor top="grass_mud 1"   bottom="grass_middle"/>  <!-- reverse -->
+    <neighbor top="grass_mud 1"   bottom="mud_middle"/>
+    <neighbor top="mud_middle"    bottom="grass_mud 1"/>   <!-- reverse -->
+
+    <!-- orientation 3: mud over grass -->
+    <neighbor top="mud_middle"    bottom="grass_mud 3"/>
+    <neighbor top="grass_mud 3"   bottom="mud_middle"/>    <!-- reverse -->
+    <neighbor top="grass_mud 3"   bottom="grass_middle"/>
+    <neighbor top="grass_middle"  bottom="grass_mud 3"/>   <!-- reverse -->
+
+    <!-- ================= CORNER HOOKUPS ================= -->
+    <!-- grass-side to corner; corner to mud-side (horizontal) -->
+    <neighbor left="grass_middle" right="corner_mud"/>
+    <neighbor left="corner_mud"   right="grass_middle"/>   <!-- reverse -->
+    <neighbor left="corner_mud"   right="mud_middle"/>
+    <neighbor left="mud_middle"   right="corner_mud"/>     <!-- reverse -->
+
+    <!-- vertical hookups via rotated corner -->
+    <neighbor top="grass_middle"  bottom="corner_mud 1"/>
+    <neighbor top="corner_mud 1"  bottom="grass_middle"/>  <!-- reverse -->
+    <neighbor top="corner_mud 1"  bottom="mud_middle"/>
+    <neighbor top="mud_middle"    bottom="corner_mud 1"/>  <!-- reverse -->
+
+    <!-- corner with straight borders (link curved->straight) -->
+    <neighbor left="grass_mud"    right="corner_mud 2"/>
+    <neighbor left="corner_mud 2" right="grass_mud"/>      <!-- reverse -->
+    <neighbor top="grass_mud 1"   bottom="corner_mud 2"/>
+    <neighbor top="corner_mud 2"  bottom="grass_mud 1"/>   <!-- reverse -->
+
+    <neighbor left="corner_mud 3" right="grass_mud 2"/>
+    <neighbor left="grass_mud 2"  right="corner_mud 3"/>   <!-- reverse -->
+    <neighbor top="corner_mud 3"  bottom="grass_mud 3"/>
+    <neighbor top="grass_mud 3"   bottom="corner_mud 3"/>  <!-- reverse -->
+
+    <!-- ============= corner chaining (full cycle) ============= -->
+    <neighbor left="corner_mud"   right="corner_mud 1"/>
+    <neighbor left="corner_mud 1" right="corner_mud"/>     <!-- reverse -->
+
+    <neighbor left="corner_mud 1" right="corner_mud 2"/>
+    <neighbor left="corner_mud 2" right="corner_mud 1"/>   <!-- reverse -->
+
+    <neighbor left="corner_mud 2" right="corner_mud 3"/>
+    <neighbor left="corner_mud 3" right="corner_mud 2"/>   <!-- reverse -->
+
+    <neighbor left="corner_mud 3" right="corner_mud"/>
+    <neighbor left="corner_mud"   right="corner_mud 3"/>   <!-- reverse -->
+
+    <neighbor top="corner_mud"    bottom="corner_mud 1"/>
+    <neighbor top="corner_mud 1"  bottom="corner_mud"/>    <!-- reverse -->
+
+    <neighbor top="corner_mud 1"  bottom="corner_mud 2"/>
+    <neighbor top="corner_mud 2"  bottom="corner_mud 1"/>  <!-- reverse -->
+
+    <neighbor top="corner_mud 2"  bottom="corner_mud 3"/>
+    <neighbor top="corner_mud 3"  bottom="corner_mud 2"/>  <!-- reverse -->
+
+    <neighbor top="corner_mud 3"  bottom="corner_mud"/>
+    <neighbor top="corner_mud"    bottom="corner_mud 3"/>  <!-- reverse -->
+  </neighbors>
+</set>
+
