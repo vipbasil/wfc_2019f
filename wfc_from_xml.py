@@ -140,11 +140,15 @@ def compile_rules(tile_defs, variants, explicit_lr, explicit_tb,
         for a, b in list(explicit_lr):
             for k in (0, 1, 2, 3):
                 ak, bk = rotate_key(a, k), rotate_key(b, k)
+                if k != 0 and ak == a and bk == b:
+                    continue
                 (add_lr if k % 2 == 0 else add_tb)(ak, bk)
 
         for a, b in list(explicit_tb):
             for k in (0, 1, 2, 3):
                 ak, bk = rotate_key(a, k), rotate_key(b, k)
+                if k != 0 and ak == a and bk == b:
+                    continue
                 (add_tb if k % 2 == 0 else add_lr)(ak, bk)
 
     return rs
@@ -318,13 +322,16 @@ def main():
     ap.add_argument("--out", default="out.png")
     ap.add_argument("--tile-dir", default="images/samples/grassmud", help="Folder with <tile>.png images")
     ap.add_argument("--seed", type=int, default=7)
-    ap.add_argument("--no-auto-rotate", action="store_false")
+    ap.add_argument("--auto-rotate", dest="auto_rotate", action="store_true", default=True,
+                    help="Enable rotation inference from declared neighbors (default)")
+    ap.add_argument("--no-auto-rotate", dest="auto_rotate", action="store_false",
+                    help="Disable rotation inference")
     ap.add_argument("--no-reciprocal", action="store_true")
     args = ap.parse_args()
 
     tile_defs, variants, explicit_lr, explicit_tb = load_tileset(args.xml)
     rs = compile_rules(tile_defs, variants, explicit_lr, explicit_tb,
-                       auto_rotate=not args.no_auto_rotate,
+                       auto_rotate=args.auto_rotate,
                        auto_reciprocal=not args.no_reciprocal)
 
     # Optional: quick sanity check

@@ -10,34 +10,67 @@
     <!-- quarter-turn; rotations supply the other 3 corners -->
     <tile name="corner_mud"   symmetry="L" weight="0.9"/>
   </tiles>
-    <neighbors>
-  <!-- solids continue -->
-  <neighbor left="grass_middle" right="grass_middle"/>
-  <neighbor top="grass_middle"  bottom="grass_middle"/>
-  <neighbor left="mud_middle"   right="mud_middle"/>
-  <neighbor top="mud_middle"    bottom="mud_middle"/>
+  <neighbors>
+    <!-- Compatibility derived from edge color halves (grass vs mud) -->
+    <neighbor left="corner_mud" right="corner_mud 1"/>
+    <neighbor left="corner_mud" right="edge_gm 1"/>
+    <neighbor left="corner_mud 1" right="corner_mud"/>
+    <neighbor left="corner_mud 1" right="corner_mud 3"/>
+    <neighbor left="corner_mud 1" right="edge_gm"/>
+    <neighbor left="corner_mud 1" right="grass_middle"/>
+    <neighbor left="corner_mud 2" right="corner_mud"/>
+    <neighbor left="corner_mud 2" right="corner_mud 3"/>
+    <neighbor left="corner_mud 2" right="edge_gm"/>
+    <neighbor left="corner_mud 2" right="grass_middle"/>
+    <neighbor left="corner_mud 3" right="corner_mud 2"/>
+    <neighbor left="corner_mud 3" right="edge_mg 1"/>
+    <neighbor left="edge_gm" right="edge_mg"/>
+    <neighbor left="edge_gm" right="mud_middle"/>
+    <neighbor left="edge_gm 1" right="corner_mud 1"/>
+    <neighbor left="edge_gm 1" right="edge_gm 1"/>
+    <neighbor left="edge_mg" right="corner_mud"/>
+    <neighbor left="edge_mg" right="corner_mud 3"/>
+    <neighbor left="edge_mg" right="edge_gm"/>
+    <neighbor left="edge_mg" right="grass_middle"/>
+    <neighbor left="edge_mg 1" right="corner_mud 2"/>
+    <neighbor left="edge_mg 1" right="edge_mg 1"/>
+    <neighbor left="grass_middle" right="corner_mud"/>
+    <neighbor left="grass_middle" right="corner_mud 3"/>
+    <neighbor left="grass_middle" right="edge_gm"/>
+    <neighbor left="grass_middle" right="grass_middle"/>
+    <neighbor left="mud_middle" right="edge_mg"/>
+    <neighbor left="mud_middle" right="mud_middle"/>
 
-  <!-- base horizontal transitions; rotation gives vertical ones -->
-  <neighbor left="grass_middle" right="edge_gm"/>
-  <neighbor left="edge_gm"      right="mud_middle"/>
+    <neighbor top="corner_mud" bottom="corner_mud 3"/>
+    <neighbor top="corner_mud" bottom="edge_gm"/>
+    <neighbor top="corner_mud 1" bottom="corner_mud 2"/>
+    <neighbor top="corner_mud 1" bottom="edge_mg"/>
+    <neighbor top="corner_mud 2" bottom="corner_mud"/>
+    <neighbor top="corner_mud 2" bottom="corner_mud 1"/>
+    <neighbor top="corner_mud 2" bottom="edge_gm 1"/>
+    <neighbor top="corner_mud 2" bottom="grass_middle"/>
+    <neighbor top="corner_mud 3" bottom="corner_mud"/>
+    <neighbor top="corner_mud 3" bottom="corner_mud 1"/>
+    <neighbor top="corner_mud 3" bottom="edge_gm 1"/>
+    <neighbor top="corner_mud 3" bottom="grass_middle"/>
+    <neighbor top="edge_gm" bottom="corner_mud 3"/>
+    <neighbor top="edge_gm" bottom="edge_gm"/>
+    <neighbor top="edge_gm 1" bottom="edge_mg 1"/>
+    <neighbor top="edge_gm 1" bottom="mud_middle"/>
+    <neighbor top="edge_mg" bottom="corner_mud 2"/>
+    <neighbor top="edge_mg" bottom="edge_mg"/>
+    <neighbor top="edge_mg 1" bottom="corner_mud"/>
+    <neighbor top="edge_mg 1" bottom="corner_mud 1"/>
+    <neighbor top="edge_mg 1" bottom="edge_gm 1"/>
+    <neighbor top="edge_mg 1" bottom="grass_middle"/>
+    <neighbor top="grass_middle" bottom="corner_mud"/>
+    <neighbor top="grass_middle" bottom="corner_mud 1"/>
+    <neighbor top="grass_middle" bottom="edge_gm 1"/>
+    <neighbor top="grass_middle" bottom="grass_middle"/>
+    <neighbor top="mud_middle" bottom="edge_mg 1"/>
+    <neighbor top="mud_middle" bottom="mud_middle"/>
+  </neighbors>
 
-  <neighbor left="mud_middle"   right="edge_mg"/>
-  <neighbor left="edge_mg"      right="grass_middle"/>
-
-  <!-- force seams to be able to turn (DOWN options) using ROTATED corners -->
-  <!-- (important: use corner 1 and 3 here so @1/@3 appear) -->
-  <neighbor top="edge_gm" bottom="corner_mud 1"/>
-  <neighbor top="edge_mg" bottom="corner_mud 3"/>
-
-  <!-- corner bridges LR only (rotation supplies TB); this keeps corner orientations distinct -->
-  <neighbor left="grass_middle" right="corner_mud"/>
-  <neighbor left="corner_mud"   right="mud_middle"/>
-
-  <!-- optional: allow seams to continue a bit horizontally; remove if stripes return -->
-  <neighbor left="edge_gm" right="edge_gm"/>
-  <neighbor left="edge_mg" right="edge_mg"/>
-</neighbors>
 
 </set>
-
 
