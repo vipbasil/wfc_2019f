@@ -1,0 +1,34 @@
+<set size="4">
+  <tiles>
+    <tile name="grass_middle" symmetry="X" weight="1.0"/>
+    <tile name="mud_middle"   symmetry="X" weight="1.0"/>
+    <tile name="grass_mud"    symmetry="I" weight="1.0"/>
+    <tile name="corner_mud"   symmetry="L" weight="1.0"/>
+  </tiles>
+
+  <neighbors>
+    <neighbor left="grass_middle" right="grass_middle"/>
+    <neighbor left="mud_middle"   right="mud_middle"/>
+
+    <neighbor left="grass_middle" right="grass_mud"/>
+  
+    <neighbor left="mud_middle"   right="grass_mud 1"/>
+
+    <neighbor left="mud_middle"   right="grass_mud"/>
+    <neighbor left="grass_mud"    right="grass_middle"/>
+
+    <neighbor left="grass_middle" right="corner_mud"/>
+    <neighbor left="corner_mud 1" right="mud_middle"/>
+    <neighbor left="corner_mud 2" right="grass_mud"/>
+    <neighbor left="corner_mud 3" right="grass_middle"/>
+
+    <neighbor left="corner_mud"   right="corner_mud 1"/>
+    <neighbor left="corner_mud 1" right="corner_mud 2"/>
+    <neighbor left="corner_mud 2" right="corner_mud 3"/>
+ 
+    <neighbor left="corner_mud 3" right="corner_mud"/>
+
+    <neighbor left="grass_mud"    right="grass_mud 1"/>
+    <neighbor left="grass_mud 1"  right="grass_mud"/>
+  </neighbors>
+</set>
