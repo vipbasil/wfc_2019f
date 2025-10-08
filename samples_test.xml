@@ -1,3 +1,3 @@
 <samples>
-	<overlapping name="test_pattern" N="2" symmetry="1" periodic="False" width="11" height="9"/>
+	<simpletiled name="Knots" subset="Standard" width="5" height="5" periodic="True" textOutput="True"/>
 </samples>
