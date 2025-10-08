@@ -343,7 +343,7 @@ def main() -> None:
         type=str,
         required=True,
         metavar="XML_FILE",
-        default="samples_reference.xml",
+        default="samples_test_ground.xml",
         help="An XML file with input data.  If unsure then use '-s samples_reference.xml'",
     )
     args = parser.parse_args()
